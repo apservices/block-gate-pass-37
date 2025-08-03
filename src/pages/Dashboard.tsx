@@ -9,6 +9,7 @@ import TicketsTab from "@/components/dashboard/TicketsTab";
 import AccessTab from "@/components/dashboard/AccessTab";
 import SubscriptionsTab from "@/components/dashboard/SubscriptionsTab";
 import AdminTab from "@/components/dashboard/AdminTab";
+import UserManagementTab from "@/components/dashboard/UserManagementTab";
 import BuyTicketsTab from "@/components/client/BuyTicketsTab";
 import SubscriptionPlansTab from "@/components/client/SubscriptionPlansTab";
 
@@ -131,7 +132,7 @@ const Dashboard = () => {
 
       <main className="container mx-auto px-4 py-8">
         <Tabs defaultValue="tickets" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 bg-card/50 backdrop-blur-sm">
+          <TabsList className="grid w-full grid-cols-5 bg-card/50 backdrop-blur-sm">
             <TabsTrigger value="tickets" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               <Ticket className="h-4 w-4" />
               Ingressos
@@ -143,6 +144,10 @@ const Dashboard = () => {
             <TabsTrigger value="subscriptions" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               <CreditCard className="h-4 w-4" />
               Assinaturas
+            </TabsTrigger>
+            <TabsTrigger value="users" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+              <Settings className="h-4 w-4" />
+              Usuários
             </TabsTrigger>
             <TabsTrigger value="admin" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               <Settings className="h-4 w-4" />
@@ -160,6 +165,10 @@ const Dashboard = () => {
 
           <TabsContent value="subscriptions" className="mt-6">
             <SubscriptionsTab userId={user.id} />
+          </TabsContent>
+
+          <TabsContent value="users" className="mt-6">
+            <UserManagementTab />
           </TabsContent>
 
           <TabsContent value="admin" className="mt-6">

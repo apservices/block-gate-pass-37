@@ -52,6 +52,15 @@ const Index = () => {
             <p className="text-lg text-muted-foreground/80 mb-12 max-w-2xl mx-auto">
               Everything you need for extraordinary events and unforgettable experiences
             </p>
+            <div className="flex justify-center">
+              <Button 
+                size="lg" 
+                onClick={() => navigate("/auth")}
+                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-medium px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Entrar
+              </Button>
+            </div>
           </div>
         </div>
       </section>
