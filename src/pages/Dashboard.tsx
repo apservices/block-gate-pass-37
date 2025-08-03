@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { Crown, LogOut, Sparkles, Ticket, QrCode, CreditCard, Settings } from "lucide-react";
-import { useFakeAuth } from "@/hooks/useFakeAuth";
+import { useAuth } from "@/hooks/useAuth";
 import TicketsTab from "@/components/dashboard/TicketsTab";
 import AccessTab from "@/components/dashboard/AccessTab";
 import SubscriptionsTab from "@/components/dashboard/SubscriptionsTab";
@@ -15,19 +15,19 @@ import SubscriptionPlansTab from "@/components/client/SubscriptionPlansTab";
 const Dashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { user, signOut, isAuthenticated } = useFakeAuth();
+  const { user, signOut, isAuthenticated, isApproved } = useAuth();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated || !isApproved) {
       navigate("/auth");
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, isApproved, navigate]);
 
   const handleSignOut = () => {
     signOut();
     toast({
       title: "Logout realizado",
-      description: `Até logo, ${user?.name}!`,
+      description: `Até logo, ${user?.nome_completo || user?.email}!`,
     });
   };
 
@@ -43,7 +43,7 @@ const Dashboard = () => {
   }
 
   // Interface para clientes
-  if (user.profile === 'cliente') {
+  if (!user.isAdmin) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/20">
         <header className="border-b bg-card/50 backdrop-blur-sm">
@@ -62,7 +62,7 @@ const Dashboard = () => {
             </div>
             <div className="flex items-center gap-4">
               <div className="text-right">
-                <p className="text-sm font-medium">{user.name}</p>
+                <p className="text-sm font-medium">{user.nome_completo || user.email}</p>
                 <p className="text-xs text-muted-foreground">{user.email}</p>
               </div>
               <Button variant="outline" size="sm" onClick={handleSignOut} className="gap-2">
@@ -118,7 +118,7 @@ const Dashboard = () => {
           </div>
           <div className="flex items-center gap-4">
             <div className="text-right">
-              <p className="text-sm font-medium">{user.name}</p>
+              <p className="text-sm font-medium">{user.nome_completo || user.email}</p>
               <p className="text-xs text-muted-foreground">{user.email}</p>
             </div>
             <Button variant="outline" size="sm" onClick={handleSignOut} className="gap-2">
