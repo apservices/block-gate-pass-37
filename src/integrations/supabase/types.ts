@@ -14,6 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
+      access_logs: {
+        Row: {
+          blockchain_registro: string | null
+          created_at: string
+          data_hora_login: string
+          gps_location: Json | null
+          id: string
+          ip_address: string | null
+          marca_aparelho: string | null
+          modelo_aparelho: string | null
+          user_id: string | null
+        }
+        Insert: {
+          blockchain_registro?: string | null
+          created_at?: string
+          data_hora_login?: string
+          gps_location?: Json | null
+          id?: string
+          ip_address?: string | null
+          marca_aparelho?: string | null
+          modelo_aparelho?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          blockchain_registro?: string | null
+          created_at?: string
+          data_hora_login?: string
+          gps_location?: Json | null
+          id?: string
+          ip_address?: string | null
+          marca_aparelho?: string | null
+          modelo_aparelho?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      admin_approval_codes: {
+        Row: {
+          ativo: boolean
+          codigo: string
+          created_at: string
+          created_by: string | null
+          descricao: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          ativo?: boolean
+          codigo: string
+          created_at?: string
+          created_by?: string | null
+          descricao?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Update: {
+          ativo?: boolean
+          codigo?: string
+          created_at?: string
+          created_by?: string | null
+          descricao?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       admin_users: {
         Row: {
           created_at: string | null
@@ -492,6 +558,48 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      financial_pending: {
+        Row: {
+          blockchain_registro: string | null
+          created_at: string
+          data_geracao: string
+          id: string
+          status: string
+          tipo: string
+          updated_at: string
+          user_id: string | null
+          valor: number
+          vencimento: string
+          visivel_somente_adm: boolean
+        }
+        Insert: {
+          blockchain_registro?: string | null
+          created_at?: string
+          data_geracao?: string
+          id?: string
+          status?: string
+          tipo: string
+          updated_at?: string
+          user_id?: string | null
+          valor: number
+          vencimento: string
+          visivel_somente_adm?: boolean
+        }
+        Update: {
+          blockchain_registro?: string | null
+          created_at?: string
+          data_geracao?: string
+          id?: string
+          status?: string
+          tipo?: string
+          updated_at?: string
+          user_id?: string | null
+          valor?: number
+          vencimento?: string
+          visivel_somente_adm?: boolean
+        }
+        Relationships: []
       }
       licenses: {
         Row: {
@@ -1340,6 +1448,51 @@ export type Database = {
           recent_activity?: Json | null
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      users_data: {
+        Row: {
+          aprovado: boolean
+          blockchain_registro: string | null
+          cartao_credito_token: string | null
+          celular: string
+          created_at: string
+          data_cadastro: string
+          device_data: Json | null
+          email: string
+          id: string
+          nome_completo: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          aprovado?: boolean
+          blockchain_registro?: string | null
+          cartao_credito_token?: string | null
+          celular: string
+          created_at?: string
+          data_cadastro?: string
+          device_data?: Json | null
+          email: string
+          id?: string
+          nome_completo: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          aprovado?: boolean
+          blockchain_registro?: string | null
+          cartao_credito_token?: string | null
+          celular?: string
+          created_at?: string
+          data_cadastro?: string
+          device_data?: Json | null
+          email?: string
+          id?: string
+          nome_completo?: string
+          updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }
